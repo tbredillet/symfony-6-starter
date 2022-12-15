@@ -4,6 +4,12 @@
 
 {% block body %}
 
-    
+    {% if activeSub %}
+        Votre abonnement {{ activeSub.plan.name }} est actif et sera renouvelé {{ activeSub.currentPeriodEnd|date('d/m/Y') }}.<br /><br />
+    {% else %}
+        {% for plan in plans %}
+            <a target="_blank" href="{{ plan.paymentLink }}">{{ plan.name }}</a>
+        {% endfor %}
+    {% endif %}
 
 {% endblock %}
